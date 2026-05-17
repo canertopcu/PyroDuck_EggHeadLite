@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.pyroduck.eggheads": {
-      "version": "file:../Assets/com.pyroduck.eggheads",
+    "com.pyroduck.eggheadslite": {
+      "version": "file:../Assets/com.pyroduck.eggheadslite",
       "depth": 0,
       "source": "local",
       "dependencies": {

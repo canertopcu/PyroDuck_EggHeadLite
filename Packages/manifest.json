@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.pyroduck.eggheads": "file:../Assets/com.pyroduck.eggheads",
+    "com.pyroduck.eggheadslite": "file:../Assets/com.pyroduck.eggheadslite",
     "com.unity.2d.animation": "13.0.4",
     "com.unity.2d.aseprite": "3.0.1",
     "com.unity.2d.psdimporter": "12.0.1",
