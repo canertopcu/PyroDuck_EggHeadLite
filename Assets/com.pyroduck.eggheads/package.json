@@ -1,0 +1,36 @@
+{
+  "name": "com.pyroduck.eggheads",
+  "version": "1.0.0",
+  "displayName": "EggHeads - Modular Character Creator",
+  "description": "A modular egg-style character system with customizable facial parts, weapons, and an integrated editor tool to generate ready-to-use prefabs.",
+  "unity": "2021.3",
+  "license": "MIT",
+  "dependencies": {
+    "com.unity.inputsystem": "1.7.0",
+    "com.unity.textmeshpro": "3.0.6",
+    "com.unity.ugui": "1.0.0"
+  },
+  "documentationUrl": "https://github.com/pyroduck/eggheads",
+  "changelogUrl": "https://github.com/pyroduck/eggheads/blob/main/CHANGELOG.md",
+  "keywords": [
+    "character",
+    "modular",
+    "customization",
+    "editor tool",
+    "weapons",
+    "2d",
+    "egg",
+    "avatar"
+  ],
+  "author": {
+    "name": "PyroDuck",
+    "url": "https://pyroduck.com"
+  },
+  "samples": [
+    {
+      "displayName": "Platformer",
+      "description": "Playable platformer sample highlighting weapons, pickups, and hazards.",
+      "path": "Samples~/Platformer"
+    }
+  ]
+}
