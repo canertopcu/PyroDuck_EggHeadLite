@@ -55,9 +55,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 
             if (muzzleParticle != null && muzzlePlace != null)
             {
-                _muzzleFlashInstance = Instantiate(muzzleParticle);
-                _muzzleFlashInstance.transform.SetPositionAndRotation(muzzlePlace.position, GetMuzzleRotation(Vector2.right));
-                _muzzleFlashInstance.transform.localScale = Vector3.one;
+                _muzzleFlashInstance = Instantiate(muzzleParticle, muzzlePlace);
+                _muzzleFlashInstance.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
                 muzzleFlash = _muzzleFlashInstance.GetComponent<ParticleSystem>();
                 ResetMuzzleFlash();
             }
@@ -166,10 +165,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
         {
             if (muzzleFlash == null) return;
 
-            Transform flashTransform = muzzleFlash.transform;
-            Vector3 position = muzzlePlace != null ? muzzlePlace.position : transform.position;
-            flashTransform.SetPositionAndRotation(position, GetMuzzleRotation(direction));
-            flashTransform.localScale = Vector3.one;
+            muzzleFlash.transform.rotation = GetMuzzleRotation(direction);
             muzzleFlash.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             muzzleFlash.Play(true);
         }

@@ -19,6 +19,10 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
         [Tooltip("Minimum seconds between two consecutive damage applications.")]
         [SerializeField] private float damageCooldown = 0.25f;
 
+        [Header("VFX")]
+        [Tooltip("Blood particle prefab spawned at the hit point each time damage is applied.")]
+        [SerializeField] private ParticleSystem bloodParticlePrefab;
+
         public float Health      { get; private set; }
         public float MaxHealth   => maxHealth;
         public bool  IsAlive     => Health > 0f;
@@ -64,10 +68,10 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
 
         public void TakeDamage(float amount, GameObject source, Vector2 hitPoint)
         { 
-            ApplyDamage(amount, source);
+            ApplyDamage(amount, source, hitPoint);
         }
 
-        public bool ApplyDamage(float amount, GameObject source)
+        public bool ApplyDamage(float amount, GameObject source, Vector2 hitPoint = default)
         {
             if (amount <= 0f || !IsAlive) return false;
 
@@ -92,8 +96,11 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
                 CurrentHealth = Health,
                 MaxHealth     = maxHealth,
                 Source        = source,
-                Target        = gameObject
+                Target        = gameObject,
+                HitPoint      = hitPoint
             });
+
+            SpawnBlood(hitPoint);
 
             if (Health <= 0f)
             {
@@ -102,6 +109,18 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
             }
 
             return true;
+        }
+
+        private void SpawnBlood(Vector2 hitPoint)
+        {
+            if (bloodParticlePrefab == null) return;
+
+            Vector3 spawnPos = hitPoint != default ? (Vector3)hitPoint : transform.position;
+            var blood = Instantiate(bloodParticlePrefab, spawnPos, Quaternion.identity);
+            var main = blood.main;
+            if (main.stopAction == ParticleSystemStopAction.None)
+                main.stopAction = ParticleSystemStopAction.Destroy;
+            blood.Play();
         }
     }
 }

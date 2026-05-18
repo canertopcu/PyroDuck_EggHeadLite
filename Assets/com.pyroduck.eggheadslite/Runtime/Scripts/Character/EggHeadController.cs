@@ -164,10 +164,10 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
         // ── Damage ────────────────────────────────────────────────────────────
 
         public void TakeDamage(float amount, GameObject source, Vector2 hitPoint)
-        { 
-            ApplyDamage(amount, source);
+        {
+            if (ApplyDamage(amount, source, hitPoint))
+                animationsController?.OnTakeDamageButtonDown();
         }
-
 
         /// <summary>
         /// Called from <see cref="EggHeadPhysicsContactRelay"/> on the collider object; hazard
@@ -189,10 +189,10 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
             return GetComponent<Collider2D>() ?? GetComponentInChildren<Collider2D>();
         }
 
-        private void ApplyDamage(float amount, GameObject source)
+        private bool ApplyDamage(float amount, GameObject source, Vector2 hitPoint = default)
         { 
-            if (amount <= 0f) return;
-            health.ApplyDamage(amount, source);
+            if (amount <= 0f) return false;
+            return health.ApplyDamage(amount, source, hitPoint);
         }
     }
 }

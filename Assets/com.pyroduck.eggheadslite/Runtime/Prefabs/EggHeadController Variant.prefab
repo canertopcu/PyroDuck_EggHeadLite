@@ -113,12 +113,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4300080807089154760, guid: d0891629f5aeadc47bff3f4dadee0fa1, type: 3}
+  m_Sprite: {fileID: 6297418567371090779, guid: 1353fbb9d0777084c8f07f4dbe61a112, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7.706422, y: 9.403669}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6b86014544a3e41895e559a3b3caa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: com.pyroduck.eggheadslite.Runtime::com.pyroduck.eggheadslite.Runtime.Scripts.Character.EggHeadController
-  characterBasePrefab: {fileID: 5490449247531382120, guid: 8d3001621048a5f42ad961a9994982c3, type: 3}
+  characterBasePrefab: {fileID: 2575173794109457092, guid: 8caea11d382772749b634e893f2cd4ae, type: 3}
   characterVisualParentTransform: {fileID: 80174553743814195}
   animatedBodyParent: {fileID: 4992962412824191792}
   rotatingBodyParent: {fileID: 5512604711192893247}

@@ -106,6 +106,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
         public float MaxHealth;
         public GameObject Source;
         public GameObject Target;
+        public Vector2 HitPoint;
     }
 
     /// <summary>
