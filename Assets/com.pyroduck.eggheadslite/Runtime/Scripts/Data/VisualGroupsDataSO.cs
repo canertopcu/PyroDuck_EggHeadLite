@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Character;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Combat;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Enums;
 using UnityEngine;
 

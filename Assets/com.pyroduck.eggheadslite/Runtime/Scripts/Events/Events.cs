@@ -1,13 +1,11 @@
 using com.pyroduck.eggheadslite.Runtime.Scripts.Audio;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Data;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Enums;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Combat;
 using UnityEngine;
 
 namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
 {
     /// <summary>
-    /// Mobile/UI fire button was pressed. Published by MobileFireButtonController;
+    /// UI fire button was pressed. Published by a UI button's OnClick → WeaponController.OnFireButtonPressed;
     /// consumed by WeaponController.
     /// </summary>
     public struct FireButtonPressedEvent
@@ -15,7 +13,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
     }
 
     /// <summary>
-    /// Mobile/UI fire button was released. Published by MobileFireButtonController;
+    /// UI fire button was released. Published by a UI button's OnClick → WeaponController.OnFireButtonReleased;
     /// consumed by WeaponController.
     /// </summary>
     public struct FireButtonReleaseEvent
@@ -38,50 +36,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
         public AnimationType AnimationType;
     }
 
-
-    /// <summary>
-    /// A visual option was selected by UI; consumed by color UI coordinators.
-    /// </summary>
-    public struct VisualSelectedEvent
-    {
-        public VisualDataSO VisualData;
-        public VisualType VisualType;
-    }
-
-
-
-    /// <summary>
-    /// Request/response event used to resolve the active CharacterColorizer.
-    /// </summary>
-    public class GetCharacterColorizerEvent : IResetable
-    {
-        public Character.CharacterColorizer Result;
-
-        public void Reset()
-        {
-            Result = null;
-        }
-    }
-
-    /// <summary>
-    /// Requests that the active character swaps one visual slot.
-    /// </summary>
-    public struct CreateItemEvent
-    {
-        public GameObject VisualPrefab;
-        public VisualType VisualType;
-
-        /// <summary>Optional — if set, consumers use this to spawn and tag the instance for serialization.</summary>
-        public Data.VisualDataSO VisualData;
-    }
-
-    /// <summary>
-    /// Requests saving the current character as a prefab in the Unity Editor.
-    /// </summary>
-    public struct SavePrefabEvent
-    {
-        public string FileName;
-    }
 
     /// <summary>
     /// Broadcasts the current movement state for animator synchronization.
@@ -145,14 +99,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
     /// </summary>
     public struct TriggerJumpEvent
     {
-    }
-
-    /// <summary>
-    /// Requests randomizing a character from the provided database.
-    /// </summary>
-    public struct RandomizeCharacterEvent
-    {
-        public EggHeadDatabaseSO Database;
     }
 
     /// <summary>

@@ -1,8 +1,8 @@
 {
   "name": "com.pyroduck.eggheadslite",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "displayName": "EggHeads Lite - Modular Character Generator",
-  "description": "A lightweight EggHeads Lite package focused on generating modular egg-style character prefabs through the Unity Editor.",
+  "description": "A free, lightweight Unity package for generating modular egg-style character prefabs. Includes an editor generator, 3 ready-to-play characters, three weapon categories (ranged/melee/throwable), a sample platformer scene, and an event-driven audio system.",
   "unity": "2021.3",
   "license": "MIT",
   "dependencies": {
@@ -10,7 +10,7 @@
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.ugui": "1.0.0"
   },
-  "documentationUrl": "https://github.com/pyroduck/eggheadslite",
+  "documentationUrl": "https://github.com/pyroduck/eggheadslite#readme",
   "changelogUrl": "https://github.com/pyroduck/eggheadslite/blob/main/CHANGELOG.md",
   "keywords": [
     "character",
@@ -19,6 +19,7 @@
     "editor tool",
     "generator",
     "lite",
+    "free",
     "weapons",
     "2d",
     "egg",

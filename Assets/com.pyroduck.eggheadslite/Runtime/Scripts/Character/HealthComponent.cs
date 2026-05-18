@@ -1,6 +1,7 @@
 using UnityEngine;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Combat;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
+using com.pyroduck.eggheadslite.Runtime.Scripts.Utils;
 using System.Collections.Generic;
 
 namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
@@ -116,7 +117,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
             if (bloodParticlePrefab == null) return;
 
             Vector3 spawnPos = hitPoint != default ? (Vector3)hitPoint : transform.position;
-            var blood = Instantiate(bloodParticlePrefab, spawnPos, Quaternion.identity);
+            var blood = Instantiate(bloodParticlePrefab, spawnPos, Quaternion.identity,
+                SceneOrganizer.Get(SceneOrganizer.Buckets.Effects));
             var main = blood.main;
             if (main.stopAction == ParticleSystemStopAction.None)
                 main.stopAction = ParticleSystemStopAction.Destroy;

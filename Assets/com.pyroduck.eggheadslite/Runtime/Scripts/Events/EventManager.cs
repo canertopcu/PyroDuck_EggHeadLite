@@ -34,7 +34,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
         /// Subscribe in <c>OnEnable</c> and unsubscribe in <c>OnDisable</c> for
         /// scene objects so disabled or destroyed objects do not keep receiving events.
         /// </summary>
-        /// <typeparam name="T">The event payload type, for example <see cref="CreateItemEvent"/>.</typeparam>
+        /// <typeparam name="T">The event payload type.</typeparam>
         /// <param name="action">Callback invoked synchronously when the event is published.</param>
         public static void Subscribe<T>(Action<T> action)
         {
@@ -81,8 +81,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Events
         #region Pooled Class Events (lower-GC for classes)
         /// <summary>
         /// Gets a reusable class-shaped event payload. Use this for mutable request/response
-        /// events such as <see cref="GetCharacterColorizerEvent"/> where the receiver writes
-        /// data back into the payload.
+        /// events where the receiver writes data back into the payload.
         /// </summary>
         /// <typeparam name="T">A reference type payload with a public parameterless constructor.</typeparam>
         public static T GetEvent<T>() where T : class, new()

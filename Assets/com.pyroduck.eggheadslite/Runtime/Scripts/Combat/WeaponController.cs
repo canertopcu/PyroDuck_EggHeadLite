@@ -259,11 +259,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
             _weaponVisualParent.SetPositionAndRotation(weaponPlaceTransform.position, weaponPlaceTransform.rotation);
         }
 
-        private Vector2 GetAttackDirection()
-        {
-            return _cachedAimDirection;
-        }
-
         public void ResetWeaponRotation()
         {
             if (weaponPlaceTransform != null)

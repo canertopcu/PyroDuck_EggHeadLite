@@ -4,7 +4,6 @@ using com.pyroduck.eggheadslite.Runtime.Scripts.Audio;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Combat;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Utils;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
-
 namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
 {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -172,7 +171,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
                 {
                     if (col == null) continue;
                     Physics2D.IgnoreCollision(myCol, col, true);
-                    _ignoredColliders.Add(col); // Technically adds duplicates if we have multiple own colliders, but that's fine for resetting, though HashSet would be better. Let's just track them.
+                    _ignoredColliders.Add(col);
                 }
             }
         }
@@ -312,66 +311,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
 
         private void PlayImpactSound(Vector3 point)
         {
-            if (!TryGetRandomImpactSound(out var chosen)) return;
-
-            PlayImpactClipAtPoint(chosen, point);
-        }
-
-        private bool TryGetRandomImpactSound(out SoundData chosen)
-        {
-            chosen = default;
-            if (impactSounds == null || impactSounds.Count == 0) return false;
-
-            int validCount = 0;
-            for (int i = 0; i < impactSounds.Count; i++)
-            {
-                if (impactSounds[i].clip != null)
-                    validCount++;
-            }
-
-            if (validCount == 0) return false;
-
-            int selectedIndex = Random.Range(0, validCount);
-            for (int i = 0; i < impactSounds.Count; i++)
-            {
-                var data = impactSounds[i];
-                if (data.clip == null) continue;
-
-                if (selectedIndex == 0)
-                {
-                    chosen = data;
-                    return true;
-                }
-
-                selectedIndex--;
-            }
-
-            return false;
-        }
-
-        private void PlayImpactClipAtPoint(SoundData sound, Vector3 point)
-        {
-            float volume = sound.volume > 0f ? sound.volume : 1f;
-            if (audioSource == null)
-            {
-                AudioSource.PlayClipAtPoint(sound.clip, point, volume);
-                return;
-            }
-
-            var temp = new GameObject("ProjectileImpactSound");
-            temp.transform.position = point;
-
-            var source = temp.AddComponent<AudioSource>();
-            source.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
-            source.spatialBlend = audioSource.spatialBlend;
-            source.minDistance = audioSource.minDistance;
-            source.maxDistance = audioSource.maxDistance;
-            source.rolloffMode = audioSource.rolloffMode;
-            source.pitch = audioSource.pitch;
-            source.PlayOneShot(sound.clip, volume);
-
-            float lifetime = sound.clip.length / Mathf.Max(0.01f, Mathf.Abs(source.pitch));
-            Destroy(temp, lifetime);
+            ProjectileImpactAudio.PlayAtPoint(impactSounds, audioSource, point);
         }
 
         private void Explode()
@@ -432,7 +372,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
         private void PlayBloodParticle(Vector2 hitPoint)
         {
             if (_bloodParticlePrefab == null) return;
-            var blood = Instantiate(_bloodParticlePrefab, hitPoint, Quaternion.identity);
+            var blood = Instantiate(_bloodParticlePrefab, hitPoint, Quaternion.identity,
+                SceneOrganizer.Get(SceneOrganizer.Buckets.Effects));
             var main = blood.main;
             if (main.stopAction == ParticleSystemStopAction.None)
                 main.stopAction = ParticleSystemStopAction.Destroy;

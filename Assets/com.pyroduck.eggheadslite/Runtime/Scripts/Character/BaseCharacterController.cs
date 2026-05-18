@@ -200,7 +200,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
         {
             if (obj.Source == gameObject)
             {
-                characterVisualController.SetDeathEyes(true);
+                characterVisualController?.SetDeathEyes(true);
             }
         }
 
@@ -208,7 +208,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
         {
             if (obj.Source == gameObject)
             {
-                characterVisualController.SetDeathEyes(false);
+                characterVisualController?.SetDeathEyes(false);
             }
         }
     }

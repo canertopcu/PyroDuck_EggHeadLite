@@ -3,34 +3,35 @@
 This folder contains the runtime audio clips used by `AudioManager`,
 `AudioLibrarySO`, weapon prefabs, projectile prefabs, and sample scenes.
 
-## Recommended CC0 / royalty-free starter set
+## Included clips
 
-| File name (suggested) | Suggested `SoundId` | Purpose |
-|-----------------------|---------------------|---------|
-| `Jump.wav`            | `CharacterJump`     | Short upward hop |
-| `Land.wav`            | `CharacterLand`     | Ground impact |
-| `Footstep.wav`        | `CharacterFootstep` | Looped footsteps |
-| `PickupWeapon.wav`    | `PickupWeapon`      | Weapon pickup |
-| `DropWeapon.wav`      | `DropWeapon`        | Weapon drop |
-| `Shoot.wav`           | `RangedFire`        | Projectile launch |
-| `MeleeSwing.wav`      | `MeleeSwing`        | Melee weapon swing |
-| `MeleeImpact.wav`     | `MeleeImpact`       | Melee weapon hit |
-| `ThrowableThrow.wav`  | `ThrowableThrow`    | Thrown weapon |
-| `ThrowableImpact.wav` | `ThrowableImpact`   | Thrown weapon hit |
-| `Explosion.wav`       | `ThrowableExplosion`| Explosive detonation |
+| File | Used by | `SoundId` |
+|------|---------|-----------|
+| `Sounds/BubbleShot.wav` | `ProjectileBuble` prefab (direct) | — |
+| `Sounds/Bumerang.wav` | `AudioLibrary` | `ThrowableImpact` (201) |
+| `Sounds/Explosion.wav` | `AudioLibrary` | `ProjectileImpact` (101) |
+| `Sounds/ShurikenFly.wav` | `AudioLibrary` | `ThrowableThrow` (200) |
+| `UsingSounds/ClickSound.wav` | Weapon base prefabs (direct) | — |
+| `UsingSounds/Explosion1.wav` | `AudioLibrary` | `ProjectileExplosion` (102) + `ThrowableExplosion` (202) |
+| `UsingSounds/KnifeStab2.wav` | `AudioLibrary` | `MeleeImpact` (301) |
+| `UsingSounds/Pistol.wav` | `AudioLibrary` | `ProjectileFire` (100) |
+| `UsingSounds/Reload.wav` | `WeaponRangedBase` prefab (direct) | — |
+| `UsingSounds/Swing.wav` | `AudioLibrary` | `MeleeSwing` (300) |
 
-Source suggestions (all CC0 / public domain):
+A pre-configured `AudioLibrary.asset` is at `Runtime/Data/AudioLibrary.asset` and is already
+wired into the Platformer sample scene. To add or replace clips:
 
-- https://freesound.org (filter by "Creative Commons 0")
-- https://kenney.nl/assets (impact, UI, digital packs)
-- https://opengameart.org (licensing per asset)
+1. Open `Runtime/Data/AudioLibrary.asset` in the Inspector.
+2. Expand the entry for the `SoundId` you want to change.
+3. Drag your new `.wav` / `.ogg` clip into the `Clips` array.
 
-## Setup
+To add entirely new sounds, add a new value to `SoundId.cs` first, then add a
+matching `SoundEntry` to the `AudioLibrary.asset`.
 
-1. Drop `.wav` / `.ogg` clips into `Runtime/Sounds`.
-2. In Unity: **Create > PyroDuck > Audio > Audio Library** - an `AudioLibrary.asset` will appear.
-3. Open the asset and add one `SoundEntry` per clip, assigning the matching `SoundId`.
-4. Drop an **AudioManager** component into your scene and assign the `AudioLibrary` asset to its `library` field.
+## Setup in a custom scene
+
+1. Add an **AudioManager** component to a GameObject in your scene.
+2. Assign `Runtime/Data/AudioLibrary.asset` to its **Library** field.
 
 Playback from anywhere:
 
@@ -38,6 +39,6 @@ Playback from anywhere:
 using com.pyroduck.eggheadslite.Runtime.Scripts.Audio;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
 
-EventManager.Publish(new PlaySoundEvent   { Id = SoundId.RangedFire });
+EventManager.Publish(new PlaySoundEvent   { Id = SoundId.ProjectileFire });
 EventManager.Publish(new PlaySoundAtEvent { Id = SoundId.MeleeImpact, Position = hitPos });
 ```

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Audio;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Character;
+using com.pyroduck.eggheadslite.Runtime.Scripts.Utils;
 using UnityEngine;
 namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 {
@@ -59,10 +60,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 
         protected override bool CanAttack(bool fireDown, bool fireHeld) => fireDown;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
             if (airSwingAudioSource != null)
             {
                 airSwingAudioSource.loop = true;
@@ -289,7 +288,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
         {
             if (bloodEffectPrefab == null) return;
 
-            var go = Instantiate(bloodEffectPrefab, point, Quaternion.identity);
+            var go = Instantiate(bloodEffectPrefab, point, Quaternion.identity,
+                SceneOrganizer.Get(SceneOrganizer.Buckets.Effects));
             var ps = go.GetComponent<ParticleSystem>();
             if (ps != null)
                 Destroy(go, ps.main.duration + ps.main.startLifetime.constantMax);

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,8 +5,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 {
     public class PuppetController : MonoBehaviour
     {
-        public PuppetActionChecker actionChecker;
-        public SpriteRenderer spriteRenderer;
+        [SerializeField] private PuppetActionChecker actionChecker;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         private Coroutine flashCoroutine;
         private Color originalColor = Color.white;
 

@@ -1,8 +1,5 @@
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Character;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Combat;
 using UnityEngine.InputSystem;
 
 namespace com.pyroduck.eggheadslite.Runtime.Scripts.InputSystem

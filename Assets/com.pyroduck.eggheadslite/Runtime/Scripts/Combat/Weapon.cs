@@ -4,13 +4,6 @@ using com.pyroduck.eggheadslite.Runtime.Scripts.Pool;
 
 namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 {
-    public enum WeaponCategory
-    {
-        Throwable,
-        Ranged,
-        Melee
-    }
-
     public enum ThrowableAttackType
     {
         ThrowOnly,       // Throw, stick 2s, drop — must be retrieved
@@ -19,20 +12,19 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
         Shuriken         // Unlimited ammo — sticks 5s then destroys
     }
 
+    /// <summary>
+    /// Determines the firing pattern for a RangedWeapon.
+    /// Gun, Rifle, and Sniper all use single-shot mechanics in code;
+    /// differentiate them via Inspector fields (damage, projectile speed,
+    /// attack cooldown) rather than expecting distinct code paths.
+    /// Shotgun is the only value that spawns multiple pellets per shot.
+    /// </summary>
     public enum RangedAttackType
     {
-        Gun,
-        Rifle,
-        Shotgun,
-        Sniper,
-        RocketLauncher
-    }
-
-    public enum MeleeAttackType
-    {
-        Sword,
-        BaseballBat,
-        Pan
+        Gun,      // Single shot — tune via attackCooldown / projectile stats
+        Rifle,    // Single shot — tune via attackCooldown / projectile stats
+        Shotgun,  // Multi-pellet spread (uses shotgunPelletCount)
+        Sniper,   // Single shot — tune via attackCooldown / projectile stats
     }
 
     public interface IWeaponAttack
@@ -60,25 +52,14 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
         [Header("Audio")] 
         [SerializeField] protected AudioClip equipSound;
         [SerializeField] protected AudioClip dropSound;
-        [SerializeField] protected AudioClip hitSound;
         [SerializeField] protected AudioSource audioSource;
-       
 
-        protected ProjectilePool _pool;
         private GameObject _owner;
         public GameObject Owner => _owner;
-        protected virtual void Awake()
-        {
-            _pool = GetComponentInParent<ProjectilePool>();
-        }
- 
+
         public void SetOwner(GameObject owner)
         {
             _owner = owner;
-        }
-        public virtual void SetPool(ProjectilePool pool)
-        {
-            _pool = pool;
         }
 
         [Header("Common Settings")] [SerializeField]
@@ -128,20 +109,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
                 AudioSource.PlayClipAtPoint(dropSound, transform.position);
             }
         }
-        
-        public virtual void PlayHitSound()
-        {
-            if (hitSound != null)
-            {
-                if (audioSource != null)
-                    audioSource.PlayOneShot(hitSound);
-                else
-                    AudioSource.PlayClipAtPoint(hitSound, transform.position);
-            }
-        }
 
         protected abstract bool CanAttack(bool fireDown, bool fireHeld);
         protected abstract void ExecuteAttack(Vector2 attackDirection);
- 
     }
 }

@@ -44,9 +44,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
         private ThrowableProjectile _activeProjectile;
         private int _throwableLayerIndex;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             _weaponRenderer     = GetComponentInChildren<Renderer>();
             _throwableLayerIndex = LayerMask.NameToLayer(throwableLayerName);
             if (_throwableLayerIndex < 0)
@@ -63,16 +62,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 
         private void OnEnable()
         {
-            if (ProjectilePool.Instance != null)
-            {
-                if (throwablePrefab != null) ProjectilePool.Instance.PrewarmThrowable(throwablePrefab);
-                if (explosionEffectPrefab != null) ProjectilePool.Instance.PrewarmExplosion(explosionEffectPrefab);
-            }
-        }
-
-        public override void SetPool(ProjectilePool pool)
-        {
-            base.SetPool(pool);
             if (ProjectilePool.Instance != null)
             {
                 if (throwablePrefab != null) ProjectilePool.Instance.PrewarmThrowable(throwablePrefab);

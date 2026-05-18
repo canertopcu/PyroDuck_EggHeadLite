@@ -6,8 +6,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
     /// <summary>
     /// Scene-level singleton that manages Projectile, ThrowableProjectile, and
     /// ExplosionEffect instances through PoolManager / ObjectPool&lt;T&gt;.
-    ///
-    /// Assign prefabs in the Inspector; Awake registers the initial pools.
     /// </summary>
     public class ProjectilePool : MonoBehaviour
     {
@@ -59,47 +57,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
                 _poolManager.RegisterPool(_explosionPrefab);
         }
 
-        // ── Public SetPrefab API ──────────────────────────────────────────────
-
-        /// <summary>
-        /// RangedWeapon provides its prefab here; the matching pool is registered
-        /// or rebuilt when the prefab changes.
-        /// </summary>
-        public void SetProjectilePrefab(Projectile prefab)
-        {
-            if (prefab == null || prefab == _projectilePrefab) return;
-            _projectilePrefab = prefab;
-            _poolManager.RegisterPool(_projectilePrefab, force: true);
-        }
-
-        /// <summary>ThrowableWeapon provides its prefab here.</summary>
-        public void SetThrowablePrefab(ThrowableProjectile prefab)
-        {
-            if (prefab == null || prefab == _throwablePrefab) return;
-            _throwablePrefab = prefab;
-            _poolManager.RegisterPool(_throwablePrefab, force: true);
-        }
-
-        /// <summary>Sets the explosion effect prefab.</summary>
-        public void SetExplosionPrefab(ExplosionEffect prefab)
-        {
-            if (prefab == null || prefab == _explosionPrefab) return;
-            _explosionPrefab = prefab;
-            _poolManager.RegisterPool(_explosionPrefab, force: true);
-        }
-
         // ── Get / Return API ──────────────────────────────────────────────────
-
-        /// <summary>Uses the default projectile prefab assigned in the Inspector.</summary>
-        public Projectile GetProjectile(Vector3 position)
-        {
-            if (_projectilePrefab == null)
-            {
-                Debug.LogError("[ProjectilePool] Projectile prefab is not assigned.");
-                return null;
-            }
-            return _poolManager.Get<Projectile>(_projectilePrefab,position, Quaternion.identity);
-        }
 
         /// <summary>Gets from a specific prefab pool, registering it if needed.</summary>
         public Projectile GetProjectile(Projectile prefab, Vector3 position)
@@ -140,17 +98,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Pool
         {
             if (proj == null) return;
             _poolManager.Return(proj);
-        }
-
-        /// <summary>Uses the default explosion effect prefab assigned in the Inspector.</summary>
-        public ExplosionEffect GetExplosionFromPool(Vector3 position)
-        {
-            if (_explosionPrefab == null)
-            {
-                Debug.LogError("[ProjectilePool] ExplosionEffect prefab is not assigned.");
-                return null;
-            }
-            return _poolManager.Get(_explosionPrefab,position, Quaternion.identity);
         }
 
         /// <summary>Gets from a specific explosion effect prefab pool, registering it if needed.</summary>

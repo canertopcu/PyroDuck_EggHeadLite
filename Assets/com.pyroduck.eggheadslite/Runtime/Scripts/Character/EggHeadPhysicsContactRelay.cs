@@ -21,20 +21,10 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
         {
             _eggHead?.TryApplyHazardDamage(collision.collider);
         }
-        //
-        // private void OnCollisionStay2D(Collision2D collision)
-        // {
-        //     _eggHead?.TryApplyHazardDamage(collision.collider);
-        // }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             _eggHead?.TryApplyHazardDamage(other);
         }
-
-        // private void OnTriggerStay2D(Collider2D other)
-        // {
-        //     _eggHead?.TryApplyHazardDamage(other);
-        // }
     }
 }

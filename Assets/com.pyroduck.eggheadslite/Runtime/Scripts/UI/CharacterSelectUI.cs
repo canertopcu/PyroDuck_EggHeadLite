@@ -33,8 +33,11 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.UI
 
         private void Start()
         {
-            ResolveTargetController();
+            var controller = ResolveTargetController();
             SyncDropdownWithActiveController();
+
+            if (controller != null && controller.CharacterBasePrefab == null && _prefabs.Count > 0)
+                OnSelectionChanged(0);
         }
 
         private void OnDestroy()

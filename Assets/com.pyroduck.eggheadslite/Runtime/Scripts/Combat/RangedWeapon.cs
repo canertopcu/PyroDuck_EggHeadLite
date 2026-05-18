@@ -22,7 +22,17 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
 
         [SerializeField] private GameObject projectilePrefab;
 
-        private Projectile _projectilePrefab => projectilePrefab.GetComponent<Projectile>();
+        private Projectile _cachedProjectilePrefab;
+        private Projectile _projectilePrefab
+        {
+            get
+            {
+                if (_cachedProjectilePrefab != null) return _cachedProjectilePrefab;
+                if (projectilePrefab == null) return null;
+                _cachedProjectilePrefab = projectilePrefab.GetComponent<Projectile>();
+                return _cachedProjectilePrefab;
+            }
+        }
 
         [Header("Muzzle Settings")] [SerializeField]
         private Transform muzzlePlace;
@@ -42,13 +52,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
         private float _recoilTimer;
         private float _recoilPeakDistance; // how far back we actually travelled when half-time hit
          
-        public override void SetPool(ProjectilePool pool)
-        {
-            base.SetPool(pool);
-            if (ProjectilePool.Instance != null && _projectilePrefab != null)
-                ProjectilePool.Instance.PrewarmProjectile(_projectilePrefab);
-        }
-
         public void CreateMuzzle()
         {
             if (muzzleFlash != null) return;
@@ -103,19 +106,19 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Combat
             switch (rangedType)
             {
                 case RangedAttackType.Shotgun:
-                    FireProjectile(spawnPos, normalizedDirection);
-                    for (int i = 1; i <= shotgunPelletCount / 2; i++)
+                {
+                    // Fire exactly shotgunPelletCount pellets spread evenly at 5° intervals.
+                    // E.g. pelletCount=6 → angles: -12.5°, -7.5°, -2.5°, +2.5°, +7.5°, +12.5°
+                    float halfSpread = (shotgunPelletCount - 1) * 0.5f;
+                    for (int i = 0; i < shotgunPelletCount; i++)
                     {
-                        FireProjectile(spawnPos, Quaternion.Euler(0, 0, i * 5) * normalizedDirection);
-                        FireProjectile(spawnPos, Quaternion.Euler(0, 0, -i * 5) * normalizedDirection);
+                        float angle = (-halfSpread + i) * 5f;
+                        FireProjectile(spawnPos, Quaternion.Euler(0, 0, angle) * normalizedDirection);
                     }
                     break;
-                case RangedAttackType.Sniper:
-                    FireProjectile(spawnPos, normalizedDirection);
-                    break;
-                case RangedAttackType.Rifle:
-                case RangedAttackType.Gun:
+                }
                 default:
+                    // Gun, Rifle, Sniper — all single shot; differentiate via Inspector stats.
                     FireProjectile(spawnPos, normalizedDirection);
                     break;
             }

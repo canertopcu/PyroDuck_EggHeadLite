@@ -47,6 +47,8 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
 
         private void Start()
         {
+            if (animator == null || animator.runtimeAnimatorController == null) return;
+
             var clips = animator.runtimeAnimatorController.animationClips;
 
             foreach (var clip in clips)
@@ -149,7 +151,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
             EventManager.Subscribe<TriggerJumpEndEvent>(OnTriggerJumpEndEvent);
             EventManager.Subscribe<AnimationButtonPressedEvent>(OnAnimationButtonPressed);
             EventManager.Subscribe<AnimationButtonReleasedEvent>(OnAnimationButtonReleased);
-            EventManager.Subscribe<TakeDamage>(OnTakeDamageEvent);
             EventManager.Subscribe<CharacterDiedEvent>(OnCharacterDiedEvent);
             EventManager.Subscribe<CharacterRevivedEvent>(OnCharacterRevivedEvent);
         }
@@ -161,7 +162,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
             EventManager.Unsubscribe<TriggerJumpEndEvent>(OnTriggerJumpEndEvent);
             EventManager.Unsubscribe<AnimationButtonPressedEvent>(OnAnimationButtonPressed);
             EventManager.Unsubscribe<AnimationButtonReleasedEvent>(OnAnimationButtonReleased);
-            EventManager.Unsubscribe<TakeDamage>(OnTakeDamageEvent);
             EventManager.Unsubscribe<CharacterDiedEvent>(OnCharacterDiedEvent);
             EventManager.Unsubscribe<CharacterRevivedEvent>(OnCharacterRevivedEvent);
             ReleaseAllAndIdle();
@@ -177,12 +177,6 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
             if (transform.IsChildOf(targetOrSource.transform)) return true;
             if (targetOrSource.transform.IsChildOf(transform)) return true;
             return false;
-        }
-
-        private void OnTakeDamageEvent(TakeDamage evt)
-        {
-            if (!IsForMe(evt.Target)) return;
-            OnTakeDamageButtonDown();
         }
 
         private void OnCharacterDiedEvent(CharacterDiedEvent evt)

@@ -16,7 +16,7 @@ namespace com.pyroduck.eggheadslite.Runtime.Scripts.Character
         [SerializeField] private float crouchMultiplier = 0.5f;
         [SerializeField] private float runSpeedMultiplier = 1.5f;
 
-        [SerializeField] private CharacterState _characterState;
+        private CharacterState _characterState;
 
         private HealthComponent _health;
         private WeaponLoadoutController _weaponLoadout;

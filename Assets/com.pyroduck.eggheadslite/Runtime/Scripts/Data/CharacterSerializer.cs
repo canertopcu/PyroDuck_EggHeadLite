@@ -1,7 +1,6 @@
 using System;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Character;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
-using com.pyroduck.eggheadslite.Runtime.Scripts.Combat;
 using System.Collections.Generic;
 using System.Linq;
 using com.pyroduck.eggheadslite.Runtime.Scripts.Enums;
