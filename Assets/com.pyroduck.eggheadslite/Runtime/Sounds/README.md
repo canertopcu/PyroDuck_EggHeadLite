@@ -5,18 +5,20 @@ This folder contains the runtime audio clips used by `AudioManager`,
 
 ## Included clips
 
-| File | Used by | `SoundId` |
-|------|---------|-----------|
-| `Sounds/BubbleShot.wav` | `ProjectileBuble` prefab (direct) | — |
-| `Sounds/Bumerang.wav` | `AudioLibrary` | `ThrowableImpact` (201) |
-| `Sounds/Explosion.wav` | `AudioLibrary` | `ProjectileImpact` (101) |
-| `Sounds/ShurikenFly.wav` | `AudioLibrary` | `ThrowableThrow` (200) |
-| `UsingSounds/ClickSound.wav` | Weapon base prefabs (direct) | — |
-| `UsingSounds/Explosion1.wav` | `AudioLibrary` | `ProjectileExplosion` (102) + `ThrowableExplosion` (202) |
-| `UsingSounds/KnifeStab2.wav` | `AudioLibrary` | `MeleeImpact` (301) |
-| `UsingSounds/Pistol.wav` | `AudioLibrary` | `ProjectileFire` (100) |
-| `UsingSounds/Reload.wav` | `WeaponRangedBase` prefab (direct) | — |
-| `UsingSounds/Swing.wav` | `AudioLibrary` | `MeleeSwing` (300) |
+
+| File                         | Used by                            | `SoundId`                                                |
+| ---------------------------- | ---------------------------------- | -------------------------------------------------------- |
+| `Sounds/BubbleShot.wav`      | `ProjectileBuble` prefab (direct)  | —                                                        |
+| `Sounds/Bumerang.wav`        | `AudioLibrary`                     | `ThrowableImpact` (201)                                  |
+| `Sounds/Explosion.wav`       | `AudioLibrary`                     | `ProjectileImpact` (101)                                 |
+| `Sounds/ShurikenFly.wav`     | `AudioLibrary`                     | `ThrowableThrow` (200)                                   |
+| `UsingSounds/ClickSound.wav` | Weapon base prefabs (direct)       | —                                                        |
+| `UsingSounds/Explosion1.wav` | `AudioLibrary`                     | `ProjectileExplosion` (102) + `ThrowableExplosion` (202) |
+| `UsingSounds/KnifeStab2.wav` | `AudioLibrary`                     | `MeleeImpact` (301)                                      |
+| `UsingSounds/Pistol.wav`     | `AudioLibrary`                     | `ProjectileFire` (100)                                   |
+| `UsingSounds/Reload.wav`     | `WeaponRangedBase` prefab (direct) | —                                                        |
+| `UsingSounds/Swing.wav`      | `AudioLibrary`                     | `MeleeSwing` (300)                                       |
+
 
 A pre-configured `AudioLibrary.asset` is at `Runtime/Data/AudioLibrary.asset` and is already
 wired into the Platformer sample scene. To add or replace clips:
@@ -42,3 +44,4 @@ using com.pyroduck.eggheadslite.Runtime.Scripts.Events;
 EventManager.Publish(new PlaySoundEvent   { Id = SoundId.ProjectileFire });
 EventManager.Publish(new PlaySoundAtEvent { Id = SoundId.MeleeImpact, Position = hitPos });
 ```
+

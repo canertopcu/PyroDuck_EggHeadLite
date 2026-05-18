@@ -1,6 +1,6 @@
 {
   "name": "com.pyroduck.eggheadslite",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "displayName": "EggHeads Lite - Modular Character Generator",
   "description": "A free, lightweight Unity package for generating modular egg-style character prefabs. Includes an editor generator, 3 ready-to-play characters, three weapon categories (ranged/melee/throwable), a sample platformer scene, and an event-driven audio system.",
   "unity": "2021.3",
