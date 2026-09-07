@@ -211,3 +211,10 @@ Assets/PyroDuck/EggHeadsLite
   GUIDs.
 - The Lite package identity is `com.pyroduck.eggheadslite`; avoid mixing it with
   the full EggHeads package in the same project.
+
+## About PyroDuck and Featured Campaigns
+
+Open **Tools > PyroDuck > About Us**, or use **About PyroDuck** in the generator.
+The editor-only window supports a configurable HTTPS campaign feed, a five-second
+carousel with hover pause, scheduling, priority, and offline caching. The feed URL
+is initially empty. See [Campaigns.md](Campaigns.md) for setup and the JSON schema.

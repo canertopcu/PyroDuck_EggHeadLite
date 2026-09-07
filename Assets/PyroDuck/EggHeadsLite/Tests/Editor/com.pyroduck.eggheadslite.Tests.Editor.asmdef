@@ -4,7 +4,8 @@
     "references": [
         "com.pyroduck.eggheadslite.Runtime",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "com.pyroduck.eggheadslite.Editor"
     ],
     "includePlatforms": [
         "Editor"

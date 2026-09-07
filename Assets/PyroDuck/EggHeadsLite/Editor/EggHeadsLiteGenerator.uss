@@ -1,0 +1,18 @@
+.generator-header { padding: 22px 24px 18px 24px; flex-shrink: 0; }
+.generator-header .logo { font-size: 23px; }
+.generator-header .section-title { margin-top: 6px; margin-bottom: 0; }
+.about-link { position: absolute; right: 24px; top: 28px; width: 130px; }
+.generator-columns { flex-direction: row; flex-grow: 1; min-height: 0; padding: 0 20px 20px 20px; }
+.generator-settings { width: 420px; min-width: 360px; flex-shrink: 0; margin-right: 18px; }
+.settings-card { padding: 18px; margin-bottom: 14px; }
+.settings-card .subtitle { margin-top: 0; margin-bottom: 14px; }
+.settings-card .unity-base-field { margin-bottom: 7px; margin-left: 0; margin-right: 0; min-height: 24px; }
+.settings-card .unity-base-field__label { min-width: 120px; width: 120px; }
+.settings-card .part-tint { margin-left: 16px; }
+.settings-card .part-tint .unity-base-field__label { min-width: 104px; width: 104px; }
+.settings-card .primary-button { margin-top: 8px; margin-left: 0; margin-right: 0; }
+.generator-preview { flex-grow: 1; min-width: 260px; padding: 18px; }
+.generator-featured { margin-top: 6px; margin-bottom: 18px; }
+.generator-featured .status { margin-top: 10px; }
+
+.preview-refresh-button { flex-grow: 0; flex-shrink: 0; align-self: flex-end; width: 120px; height: 26px; min-height: 26px; font-size: 11px; margin-top: 8px; margin-right: 0; margin-bottom: 10px; }

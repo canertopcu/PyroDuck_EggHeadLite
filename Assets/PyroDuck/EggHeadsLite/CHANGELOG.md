@@ -1,3 +1,9 @@
+# Editor campaigns
+
+- Add the UI Toolkit About PyroDuck window and optional remote Featured carousel.
+- Include a configurable feed, bundled fallback, scheduling, cache and local opt-out.
+- Keep promotion code in Editor assemblies; no runtime changes.
+
 # Compatibility update
 
 - Use Assets/PyroDuck/EggHeadsLite for .unitypackage distribution; remove local UPM registration.

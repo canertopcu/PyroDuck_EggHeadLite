@@ -1,0 +1,49 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:ScrollView class="page">
+    <ui:VisualElement class="header">
+      <ui:Label text="PYRODUCK" class="logo" />
+      <ui:Label text="Game Development Assets &amp; Tools" class="subtitle" />
+    </ui:VisualElement>
+    <ui:VisualElement class="section">
+      <ui:Label text="About PyroDuck" class="section-title" />
+      <ui:Label text="PyroDuck is an independent game development studio creating high-quality assets and tools for Unity developers." class="body-text" />
+      <ui:Label text="We focus on making game development faster, easier, and more creative through practical tools and ready-to-use content." class="body-text" />
+      <ui:Label text="We are also developing our own games and continuously expanding our ecosystem of assets and tools for game developers." class="body-text" />
+      <ui:VisualElement class="button-row">
+        <ui:Button name="asset-store-button" text="Asset Store" class="secondary-button" />
+        <ui:Button name="website-button" text="Website" class="secondary-button" />
+      </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="featured" class="section">
+      <ui:Label text="FEATURED" class="eyebrow" />
+      <ui:VisualElement name="campaign-card" class="campaign-card">
+        <ui:VisualElement class="image-frame">
+          <ui:Image name="campaign-image" class="campaign-image" scale-mode="ScaleToFit" />
+          <ui:Label name="image-placeholder" class="image-placeholder" />
+          <ui:Label name="discount-ribbon" class="discount-ribbon" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement class="card-content">
+          <ui:Label name="campaign-badge" class="badge" />
+          <ui:Label name="campaign-title" class="campaign-title" />
+          <ui:Label name="campaign-description" class="body-text" />
+          <ui:Button name="view-asset-button" text="View Asset" class="primary-button" />
+        </ui:VisualElement>
+      </ui:VisualElement>
+      <ui:Label name="empty-state" text="No featured campaigns right now. Explore our Asset Store above." class="body-text" />
+      <ui:VisualElement name="navigation" class="navigation">
+        <ui:Button name="previous" text="‹" tooltip="Previous campaign" class="arrow" />
+        <ui:VisualElement name="dots" class="dots" />
+        <ui:Button name="next" text="›" tooltip="Next campaign" class="arrow" />
+      </ui:VisualElement>
+      <ui:VisualElement class="service-row">
+        <ui:Label name="status" class="status" />
+        <ui:Button name="refresh" text="Refresh" />
+      </ui:VisualElement>
+      <ui:Toggle name="remote-toggle" label="Load online featured content" tooltip="Only while this window is open. No analytics are collected." />
+    </ui:VisualElement>
+    <ui:VisualElement class="footer">
+      <ui:Label text="PyroDuck Studio" class="footer-title" />
+      <ui:Label text="Game Assets · Tools · Games" class="subtitle" />
+    </ui:VisualElement>
+  </ui:ScrollView>
+</ui:UXML>

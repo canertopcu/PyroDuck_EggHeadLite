@@ -41,3 +41,13 @@ provided by TMP Essential Resources.
 
 Test results: `Logs/final-<Unity version>.xml`.
 Export log: `Logs/export-lite-final.log`.
+
+## Editor campaigns update
+
+The About Us/campaign update passed 29/29 tests on each of 6000.5.8f1,
+6000.3.22f1 and 2022.3.62f3, including the existing Platformer smoke test.
+Results are in `Logs/campaign-final-<Unity version>.xml`.
+The additional tests cover UXML/USS loading, fallback service disposal, filtering,
+JSON schema, and permitted destination URLs. The feed is intentionally unconfigured;
+live HTTPS/image delivery has not been tested against a production host.
+No visual screen inspection was performed.
